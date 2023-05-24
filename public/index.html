@@ -29,6 +29,14 @@
       </button>
 
       <script>
+
+        console.log('Es localhost: ',window.location.hostname.includes('localhost'));
+
+        //Se determina si la url es de localhost o de producción
+        var url = ( window.location.hostname.includes('localhost') )
+                    ? 'http://localhost:8080/api/auth/google'
+                    : 'https://node-restserver-production-36f7.up.railway.app/api/auth/google';
+
         function handleCredentialResponse(response) {
 
             //Google token : ID_TOKEN
@@ -36,7 +44,7 @@
 
            const body = { id_token : response.credential };
 
-           fetch( 'http://localhost:8080/api/auth/google', {
+           fetch( url, {
             method: 'POST',
             headers: {
                 'Content-Type' : 'application/json'
