@@ -52,11 +52,26 @@ const existsIdProducto = async ( id ) => {
     }
 };
 
+const validarColecciones = ( coleccion = '', colecciones = [] ) => {
+
+    const existeColeccion = colecciones.includes(coleccion);
+
+    // console.log('Existe colección: ', existeColeccion);
+
+    if ( !existeColeccion ) {
+        throw new Error(`La colección ${coleccion} no está permitida - ${colecciones}`);
+    }
+
+    return true;
+
+}
+
 module.exports = {
     isValidRole,
     existsEmail,
     existsIdProducto,
     validateIdUser,
     existsIdCategory,
-    validateCategoryName
+    validateCategoryName,
+    validarColecciones
 };
